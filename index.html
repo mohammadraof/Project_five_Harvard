@@ -1,39 +1,66 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="/src/style.css" rel="stylesheet">
   <title>Study Sprint Board</title>
 </head>
-<body class="bg-slate-100 text-slate-800 min-h-screen">
+<body class="min-h-screen bg-foam font-sans text-ink antialiased">
   <div class="mx-auto max-w-6xl p-4 md:p-8">
-    <h1 class="mb-6 text-3xl font-bold text-violet-700">🗂️ Study Sprint Board</h1>
+
+    <!-- HEADER -->
+    <header class="mb-6">
+  <div class="flex items-center gap-4">
+    <span
+      class="grid size-12 shrink-0 place-items-center rounded-2xl bg-linear-to-br from-ocean to-aqua text-white shadow-lg shadow-aqua/30 md:size-14"
+      aria-hidden="true"
+    >
+      <svg viewBox="0 0 24 24" class="size-7 md:size-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 6.5l1.8 1.8L9 5"/>
+        <path d="M12.5 6.5H20"/>
+        <path d="M4 12.5l1.8 1.8L9 11"/>
+        <path d="M12.5 12.5H20"/>
+        <rect x="4" y="16.5" width="4.5" height="4" rx="1"/>
+        <path d="M12.5 18.5H17"/>
+      </svg>
+    </span>
+
+    <h1 class="font-display text-4xl font-extrabold tracking-tight text-ink md:text-5xl">
+      Study Sprint Board
+    </h1>
+  </div>
+  <p class="mt-3 text-slate-500">Plan it, start it, finish it.</p>
+</header>
+
     <!-- PROGRESS -->
-    <section id="stats" aria-labelledby="statsTitle" class="mb-6 rounded-xl bg-white p-4 shadow">
-      <h2 id="statsTitle" class="mb-3 font-bold text-slate-600">Progress</h2>
+    <section id="stats" aria-labelledby="statsTitle" class="mb-6 rounded-3xl bg-linear-to-br from-ink via-[#0a2f5c] to-ocean p-5 text-white shadow-xl shadow-ink/20 md:p-6">
+      <h2 id="statsTitle" class="mb-4 font-display text-lg font-bold text-aqua">Progress</h2>
 
       <dl class="grid grid-cols-2 gap-3 text-center sm:grid-cols-4">
-        <div class="rounded-lg bg-slate-50 p-3">
-          <dt class="text-sm text-slate-500">Total</dt>
-          <dd id="statTotal" class="text-2xl font-bold">0</dd>
+        <div class="rounded-2xl bg-white/10 p-3 ring-1 ring-white/15">
+          <dt class="text-sm text-sky-200">Total</dt>
+          <dd id="statTotal" class="font-display text-3xl font-extrabold">0</dd>
         </div>
-        <div class="rounded-lg bg-slate-50 p-3">
-          <dt class="text-sm text-slate-500">To Do</dt>
-          <dd id="statTodo" class="text-2xl font-bold">0</dd>
+        <div class="rounded-2xl bg-white/10 p-3 ring-1 ring-white/15">
+          <dt class="text-sm text-[#d9c3ad]">To Do</dt>
+          <dd id="statTodo" class="font-display text-3xl font-extrabold">0</dd>
         </div>
-        <div class="rounded-lg bg-slate-50 p-3">
-          <dt class="text-sm text-slate-500">In Progress</dt>
-          <dd id="statInprogress" class="text-2xl font-bold">0</dd>
+        <div class="rounded-2xl bg-white/10 p-3 ring-1 ring-white/15">
+          <dt class="text-sm text-aqua">In Progress</dt>
+          <dd id="statInprogress" class="font-display text-3xl font-extrabold">0</dd>
         </div>
-        <div class="rounded-lg bg-slate-50 p-3">
-          <dt class="text-sm text-slate-500">Done</dt>
-          <dd id="statDone" class="text-2xl font-bold">0</dd>
+        <div class="rounded-2xl bg-white/10 p-3 ring-1 ring-white/15">
+          <dt class="text-sm text-mint">Done</dt>
+          <dd id="statDone" class="font-display text-3xl font-extrabold">0</dd>
         </div>
       </dl>
 
-      <div class="mt-4">
-        <div class="mb-1 flex justify-between text-sm font-semibold">
+      <div class="mt-5">
+        <div class="mb-1.5 flex justify-between text-sm font-semibold">
           <span>Completion</span>
           <span id="statPercent">0%</span>
         </div>
@@ -44,87 +71,97 @@
           aria-valuemin="0"
           aria-valuemax="100"
           aria-valuenow="0"
-          class="h-3 w-full overflow-hidden rounded-full bg-slate-200"
+          class="h-3.5 w-full overflow-hidden rounded-full bg-white/15"
         >
-          <div id="progressFill" class="h-full bg-green-500 transition-all" style="width: 0%"></div>
+          <div id="progressFill" class="h-full rounded-full bg-linear-to-r from-aqua to-mint transition-all duration-500" style="width: 0%"></div>
         </div>
       </div>
     </section>
+
     <!-- TOOLBAR -->
-    <div id="toolbar" class="mb-6 flex flex-wrap gap-3 rounded-xl bg-white p-4 shadow">
+    <div id="toolbar" class="mb-4 flex flex-wrap gap-3 rounded-2xl bg-white p-3 shadow-sm ring-1 ring-ink/5">
       <input
         type="search"
         id="searchInput"
         aria-label="Search tasks by title or subject"
         placeholder="Search title or subject..."
-        class="min-w-48 flex-1 rounded-lg border border-slate-300 px-3 py-2 focus:outline-2 focus:outline-violet-500"
-        >
-        <select
-          id="priorityFilter"
-          aria-label="Filter by priority"
-          class="rounded-lg border border-slate-300 bg-white px-3 py-2 focus:outline-2 focus:outline-violet-500"
-          >
-            <option value="all">All priorities</option>
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-        </select>
-        <button
+        class="min-w-48 flex-1 rounded-xl border border-slate-200 bg-foam/60 px-3.5 py-2.5 placeholder:text-slate-400 focus:border-aqua"
+      >
+      <select
+        id="priorityFilter"
+        aria-label="Filter by priority"
+        class="rounded-xl border border-slate-200 bg-foam/60 px-3.5 py-2.5 focus:border-aqua"
+      >
+        <option value="all">All priorities</option>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+      <button
         type="button"
         id="clearFiltersBtn"
-        class="hidden rounded-lg border border-slate-300 px-4 py-2 font-semibold text-slate-600 hover:bg-slate-100"
-        >
-          Clear Filters
-        </button>
-        <button
+        class="hidden rounded-xl border border-slate-200 px-4 py-2.5 font-semibold text-slate-600 transition hover:bg-foam"
+      >
+        Clear Filters
+      </button>
+      <button
         type="button"
         id="resetBoardBtn"
-        class="rounded-lg border border-red-200 px-4 py-2 font-semibold text-red-600 hover:bg-red-50"
-        >
-          Reset Board
-        </button>
+        class="rounded-xl border border-red-200 px-4 py-2.5 font-semibold text-red-600 transition hover:bg-red-50"
+      >
+        Reset Board
+      </button>
     </div>
+
     <!-- ADD TASK FORM -->
-    <form id="taskForm" class="mb-6 flex flex-wrap items-end gap-3 rounded-xl bg-white p-4 shadow">
+    <form id="taskForm" class="mb-8 flex flex-wrap items-start gap-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-ink/5">
       <div class="flex min-w-48 flex-1 flex-col gap-1">
         <label for="titleInput" class="text-sm font-semibold">Title</label>
-        <input type="text" id="titleInput" aria-describedby="titleError" class="rounded-lg border border-slate-300 px-3 py-2 focus:outline-2 focus:outline-violet-500 aria-invalid:border-red-500">
+        <input type="text" id="titleInput" aria-describedby="titleError" class="rounded-xl border border-slate-200 bg-foam/60 px-3.5 py-2.5 focus:border-aqua aria-invalid:border-red-500">
         <p id="titleError" role="alert" class="text-sm font-semibold text-red-600"></p>
       </div>
 
       <div class="flex min-w-48 flex-1 flex-col gap-1">
         <label for="subjectInput" class="text-sm font-semibold">Subject</label>
-        <input type="text" id="subjectInput" aria-describedby="subjectError" class="rounded-lg border border-slate-300 px-3 py-2 focus:outline-2 focus:outline-violet-500 aria-invalid:border-red-500">
+        <input type="text" id="subjectInput" aria-describedby="subjectError" class="rounded-xl border border-slate-200 bg-foam/60 px-3.5 py-2.5 focus:border-aqua aria-invalid:border-red-500">
         <p id="subjectError" role="alert" class="text-sm font-semibold text-red-600"></p>
       </div>
 
       <div class="flex flex-col gap-1">
         <label for="priorityInput" class="text-sm font-semibold">Priority</label>
-        <select id="priorityInput" class="rounded-lg border border-slate-300 px-3 py-2 focus:outline-2 focus:outline-violet-500">
+        <select id="priorityInput" class="rounded-xl border border-slate-200 bg-foam/60 px-3.5 py-2.5 focus:border-aqua">
           <option value="low">Low</option>
           <option value="medium" selected>Medium</option>
           <option value="high">High</option>
         </select>
       </div>
 
-      <button type="submit" id="submitBtn" class="rounded-lg bg-violet-600 px-5 py-2 font-bold text-white hover:bg-violet-700">Add Task</button>
-      <button type="button" id="cancelEditBtn" class="hidden rounded-lg border border-slate-300 px-5 py-2 font-bold text-slate-600 hover:bg-slate-100">Cancel</button>
-
+      <div class="flex gap-2 self-start pt-6">
+        <button type="submit" id="submitBtn" class="rounded-xl bg-ocean px-6 py-2.5 font-bold text-white shadow-md shadow-ocean/30 transition hover:bg-ink active:scale-95">Add Task</button>
+        <button type="button" id="cancelEditBtn" class="hidden rounded-xl border border-slate-200 px-5 py-2.5 font-bold text-slate-600 transition hover:bg-foam">Cancel</button>
+      </div>
     </form>
+
     <!-- BOARD -->
-    <div class="grid gap-4 md:grid-cols-3">
-      <section class="min-w-0 rounded-xl bg-white p-4 shadow">
-        <h2 class="mb-3 font-bold text-slate-600">To Do</h2>
+    <div class="grid gap-5 md:grid-cols-3">
+      <section class="min-w-0 rounded-3xl border-t-4 border-sand bg-white/70 p-4 shadow-sm ring-1 ring-ink/5 backdrop-blur">
+        <h2 class="mb-4 flex items-center gap-2 font-display text-lg font-bold text-ink">
+          <span class="size-2.5 rounded-full bg-sand" aria-hidden="true"></span>To Do
+        </h2>
         <div class="flex flex-col gap-3" id="todo-list"></div>
       </section>
 
-      <section class="min-w-0 rounded-xl bg-white p-4 shadow">
-        <h2 class="mb-3 font-bold text-slate-600">In Progress</h2>
+      <section class="min-w-0 rounded-3xl border-t-4 border-aqua bg-white/70 p-4 shadow-sm ring-1 ring-ink/5 backdrop-blur">
+        <h2 class="mb-4 flex items-center gap-2 font-display text-lg font-bold text-ink">
+          <span class="size-2.5 rounded-full bg-aqua" aria-hidden="true"></span>In Progress
+        </h2>
         <div class="flex flex-col gap-3" id="inprogress-list"></div>
       </section>
 
-      <section class="min-w-0 rounded-xl bg-white p-4 shadow">
-        <h2 class="mb-3 font-bold text-slate-600">Done</h2>
+      <section class="min-w-0 rounded-3xl border-t-4 border-mint bg-white/70 p-4 shadow-sm ring-1 ring-ink/5 backdrop-blur">
+        <h2 class="mb-4 flex items-center gap-2 font-display text-lg font-bold text-ink">
+          <span class="size-2.5 rounded-full bg-mint" aria-hidden="true"></span>Done
+        </h2>
         <div class="flex flex-col gap-3" id="done-list"></div>
       </section>
     </div>

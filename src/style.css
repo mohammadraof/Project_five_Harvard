@@ -1,8 +1,79 @@
 @import "tailwindcss";
 
+/* ---------- Palette & fonts (Tailwind v4 tokens) ---------- */
+@theme {
+  --color-ink: #0b1f3a;      /* deep navy: text + hero card */
+  --color-ocean: #023e8a;    /* your original blue: primary actions */
+  --color-aqua: #00b4d8;     /* your original cyan: focus + progress */
+  --color-sand: #a9927d;     /* your original tan: To Do accent */
+  --color-mint: #2ec4a6;     /* Done accent */
+  --color-foam: #eef6fa;     /* page background */
+
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ---------- Page background ---------- */
+body {
+  background-image:
+    radial-gradient(60rem 28rem at 85% -10%, rgb(0 180 216 / 0.16), transparent 60%),
+    radial-gradient(48rem 24rem at -10% 10%, rgb(169 146 125 / 0.16), transparent 60%);
+  background-attachment: fixed;
+}
+
+/* ---------- Keyboard focus ---------- */
 button:focus-visible,
 select:focus-visible,
-input:focus-visible{
-  outline: 2px solid #7c3aed;
-  outline-offset: 2px;
+input:focus-visible {
+  outline: 2px solid #00b4d8;
+}
+
+/* ---------- Task cards (rendered by main.js) ---------- */
+#todo-list > *,
+#inprogress-list > *,
+#done-list > * {
+  background: #fff;
+  border: 1px solid #e1ecf2;
+  border-left-width: 4px;
+  border-radius: 0.875rem;
+  padding: 0.9rem 1rem;
+  box-shadow: 0 1px 2px rgb(11 31 58 / 0.05);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+#todo-list > *:hover,
+#inprogress-list > *:hover,
+#done-list > *:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -8px rgb(11 31 58 / 0.25);
+}
+#todo-list > * { border-left-color: #a9927d; }
+#inprogress-list > * { border-left-color: #00b4d8; }
+#done-list > * { border-left-color: #2ec4a6; background: #f4fbf9; }
+
+#todo-list > * button,
+#inprogress-list > * button,
+#done-list > * button {
+  border-radius: 0.5rem;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* ---------- Empty columns ---------- */
+#todo-list:empty::before,
+#inprogress-list:empty::before,
+#done-list:empty::before {
+  display: block;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #6b7f94;
+  border: 2px dashed #cddbe5;
+  border-radius: 0.875rem;
+}
+#todo-list:empty::before { content: "Nothing queued. Add a task above."; }
+#inprogress-list:empty::before { content: "Nothing in progress. Pick one from To Do."; }
+#done-list:empty::before { content: "Finished tasks will land here."; }
+
+/* ---------- Motion preferences ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
 }
